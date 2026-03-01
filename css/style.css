@@ -1,1 +1,91 @@
+/* =========================
+   Theme & Base Styles
+========================= */
+:root {
+  --primary: #ff8c00;
+  --primary-soft: rgba(255, 140, 0, 0.15);
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --text-main: #1c1e21;
+  --text-muted: #65676b;
+  --border: #e4e6eb;
+  --success: #31a24c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #18191a;
+    --surface: #242526;
+    --text-main: #e4e6eb;
+    --text-muted: #b0b3b8;
+    --border: #3e4042;
+  }
+}
 
+/* =========================
+   Global Reset & Body
+========================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* =========================
+   Components
+========================= */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+/* Floating Action Button */
+.fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+  cursor: pointer;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.toast.show { opacity: 1; }
+
+/* Utility */
+.hidden { display: none !important; }
