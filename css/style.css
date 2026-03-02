@@ -134,9 +134,9 @@ main {
 
 .value {
   font-family: 'SF Mono', 'Roboto Mono', monospace;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primaryx);
   word-break: break-all;
   white-space: normal;
   text-align: right;
