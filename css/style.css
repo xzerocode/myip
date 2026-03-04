@@ -245,10 +245,10 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -55%) scale(4.5);
-  z-index: 250;
-  border:var(--flag-border) ;
+  z-index: 999;
+  border: var(--flag-border);
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.45);
   cursor: zoom-out;
-  }
+}
 
 .hidden { display: none !important; }
