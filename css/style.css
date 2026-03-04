@@ -244,8 +244,8 @@ main {
 .flag-icon:hover {
   transform: scale(4); /* enlarge 4× */
   z-index: 500;        /* appear above other content */
-  border: 0.5px solid rgba(255, 140, 0, 0.7);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 0px solid rgba(255, 140, 0, 0.7);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
   cursor: zoom-out;
 }
 .flag-icon:hover {
