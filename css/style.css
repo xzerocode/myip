@@ -229,7 +229,7 @@ main {
   object-fit: cover;
   border-radius: 1px;
   background: #fff; /* solid white base fixes dark mode tint */
-  border: none; /* no border at all */
+  border: 0.5px solid var(--flag-border);
   box-shadow: 0 1px 3px var(--flag-shadow);
   transition: all 0.3s ease;
   filter: none !important;
@@ -244,7 +244,7 @@ main {
 .flag-icon:active {
   transform: scale(4);
   z-index: 500;
-  border: none; /* keep border removed */
+  border: 0.5px solid var(--flag-border);
   box-shadow: 0 0 12px rgba(128, 128, 128, 0.6); /* soft gray glow */
   cursor: zoom-out;
 }
