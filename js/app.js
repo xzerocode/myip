@@ -32,7 +32,7 @@ const IPIntelApp = (() => {
   state.isLoading = true;
   dom.fab.disabled = true;
   dom.fab.style.background = "#ccc";               // light gray during task
-  dom.fab.style.transform = "scale(1.1)";          // slight zoom
+  dom.fab.style.transform = "scale(0.9)";        
   dom.fab.style.boxShadow = "0 4px 12px rgba(200,200,200,0.5)"; // gray shadow
   const fabIcon = dom.fab.querySelector('i');
   fabIcon.style.animation = "spin 1s linear infinite"; // rotate icon
