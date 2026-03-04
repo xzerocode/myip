@@ -241,7 +241,6 @@ main {
 /* Hover / Touch zoom effect */
 .flag-icon:hover,
 .flag-icon:active {
-  transform: scale(4.5);
   position: fixed;
   top: 50%;
   left: 50%;
