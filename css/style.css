@@ -197,7 +197,7 @@ main {
   justify-content: center;
   font-size: 28px;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 90;
+  z-index: 500;
 }
 .fab:active { transform: scale(0.95); }
 .fab:disabled { background: var(--text-muted); cursor: not-allowed; box-shadow: none; }
@@ -218,7 +218,7 @@ main {
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s;
-  z-index: 200;
+  z-index: 300;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
@@ -230,7 +230,7 @@ main {
   background: var(--flag-bg);
   border: var(--flag-border);
   box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
   filter: none !important;
   mix-blend-mode: normal !important;
   color-scheme: only light;
@@ -242,7 +242,11 @@ main {
 .flag-icon:hover,
 .flag-icon:active {
   transform: scale(4.5);
-  z-index: 500;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%) scale(4.5);
+  z-index: 250;
   border:var(--flag-border) ;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.45);
   cursor: zoom-out;
