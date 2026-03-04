@@ -175,8 +175,8 @@ main {
   right: 30px;
   width: 55px;
   height: 55px;
-  background: var(--primary);
-  color: white;
+  background:#ffedd5;
+  color: #d97706;
   border: none;
   opacity: 0.8;
   border-radius: 16px;
