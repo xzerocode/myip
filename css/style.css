@@ -224,10 +224,10 @@ main {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .flag-icon {
-  width: 26px;
-  height: 18px;
+  width: 30px;
+  height: 22px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 1px;
   background: #fff; /* solid white base fixes dark mode tint */
   border: 1px solid var(--flag-border);
   box-shadow: 0 1px 3px var(--flag-shadow);
