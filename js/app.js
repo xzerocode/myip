@@ -32,7 +32,7 @@ const IPIntelApp = (() => {
   state.isLoading = true;
   dom.fab.disabled = true;
   dom.fab.style.background = "#ccc";               // light gray during task
-  dom.fab.style.transform = "scale(0.9)";        
+  dom.fab.style.transform = "scale(0.95)";          // slight zoom
   dom.fab.style.boxShadow = "0 4px 12px rgba(200,200,200,0.5)"; // gray shadow
   const fabIcon = dom.fab.querySelector('i');
   fabIcon.style.animation = "spin 1s linear infinite"; // rotate icon
@@ -41,6 +41,8 @@ const IPIntelApp = (() => {
   if (state.abortController) state.abortController.abort();
   state.abortController = new AbortController();
   const { signal } = state.abortController;
+
+  let success = false; // track if data was fetched successfully
 
   try {
     const [v4, v6] = await Promise.allSettled([
@@ -58,6 +60,7 @@ const IPIntelApp = (() => {
       const geoData = await geoRes.json();
       renderGeo(geoData);
       updateStatusIndicator(geoData.org);
+      success = true;
     } else {
       updateStatusIndicator(null);
     }
@@ -66,22 +69,23 @@ const IPIntelApp = (() => {
   }
 
   // === Stop rotation + start cooldown ===
-  fabIcon.style.animation = "none";            // stop icon rotation
-  dom.fab.style.background = "#888";           // dim gray for cooldown
-  dom.fab.style.transform = "scale(1)";        // restore size
-  dom.fab.style.opacity = "0.6";               // reduce opacity
-  dom.fab.style.boxShadow = "0 4px 12px rgba(136,136,136,0.5)"; // gray shadow
+  fabIcon.style.animation = "none"; // stop rotation
+  dom.fab.style.transform = "scale(1)";
+  dom.fab.style.background = "#ff8c00"; // theme orange
+  dom.fab.style.opacity = "0.6"; // dim orange cooldown
+  dom.fab.style.boxShadow = "0 4px 12px rgba(255,140,0,0.3)";
 
+  if (success) showToast("Data refreshed successfully"); // ✅ always shows
+
+  // cooldown for 5 seconds
   setTimeout(() => {
-    // Restore original button after 5-second cooldown
     state.isLoading = false;
     dom.fab.disabled = false;
-    dom.fab.style.background = "#ff8c00";       // original color
+    dom.fab.style.background = "#ff8c00"; // normal
     dom.fab.style.opacity = "1";
-    dom.fab.style.transform = "scale(1)";
-    dom.fab.style.boxShadow = "0 4px 12px rgba(255,140,0,0.4)"; // original shadow
+    dom.fab.style.boxShadow = "0 4px 12px rgba(255,140,0,0.4)";
   }, 5000);
-    }
+      }
   function setLoading(loading) {
     state.isLoading = loading;
     dom.fab.disabled = loading;
