@@ -29,7 +29,7 @@
     --to-text: #ffb347;
     --flag-bg: #2b2b2b;
     --flag-border: #555;
-    --flag-shadow: rgba(255, 255, 255, 0.08);
+    --flag-shadow: rgba(255, 255, 255, 0.12);
     
   }
 }
@@ -229,27 +229,24 @@ main {
   object-fit: cover;
   border-radius: 1px;
   background: #fff; /* solid white base fixes dark mode tint */
-  border: 0.4px solid var(--flag-border);
+  border: none; /* no border at all */
   box-shadow: 0 1px 3px var(--flag-shadow);
   transition: all 0.3s ease;
-
-  /* Prevent Brave/Chrome from auto-darkening flag images */
   filter: none !important;
   mix-blend-mode: normal !important;
   color-scheme: only light;
   transform-origin: center center;
+  cursor: zoom-in;
 }
-  /* On hover (PC) or touch (mobile long press) */
-.flag-icon:active,
-.flag-icon:hover {
-  transform: scale(4); /* enlarge 4× */
-  z-index: 500;        /* appear above other content */
-  border: 0.4px solid rgba(255, 140, 0, 0.7);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+
+/* Hover or touch zoom effect */
+.flag-icon:hover,
+.flag-icon:active {
+  transform: scale(4);
+  z-index: 500;
+  border: none; /* keep border removed */
+  box-shadow: 0 0 12px rgba(128, 128, 128, 0.6); /* soft gray glow */
   cursor: zoom-out;
 }
-.flag-icon:hover {
-  border-color: #ff8c00;
-  box-shadow: 0 0 4px rgba(255, 140, 0, 0.3);
-}
+
 .hidden { display: none !important; }
