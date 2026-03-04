@@ -8,6 +8,8 @@
   --border: #e4e6eb;
   --skeleton-base: #e4e6eb;
   --success: #31a24c;
+  --to: #ffedd5;
+  --to-text: #b45309;
   
 }
 
@@ -20,6 +22,8 @@
     --text-muted: #b0b3b8;
     --border: #3e4042;
     --skeleton-base: #3a3b3c;
+    --to: #3a2b1a;
+    --to-text: #ffb347;
     
   }
 }
@@ -201,8 +205,8 @@ main {
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background:#ffedd5;
-  color: #d97706;
+  background: var(--to);
+  color: var(--to-text);
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 15px;
