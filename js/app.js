@@ -26,39 +26,62 @@ const IPIntelApp = (() => {
   };
 
   async function handleRefresh() {
-    if (state.isLoading) return;
-    setLoading(true);
+  if (state.isLoading) return;
 
-    if (state.abortController) state.abortController.abort();
-    state.abortController = new AbortController();
-    const { signal } = state.abortController;
+  // === Start Task Visuals ===
+  state.isLoading = true;
+  dom.fab.disabled = true;
+  dom.fab.style.background = "#ccc";               // light gray during task
+  dom.fab.style.transform = "scale(1.1)";          // slight zoom
+  dom.fab.style.boxShadow = "0 4px 12px rgba(200,200,200,0.5)"; // gray shadow
+  const fabIcon = dom.fab.querySelector('i');
+  fabIcon.style.animation = "spin 1s linear infinite"; // rotate icon
+  dom.connectionType.querySelector('span').innerText = "DETECTING...";
 
-    try {
-      const [v4, v6] = await Promise.allSettled([
-        fetch('https://api.ipify.org?format=json', { signal }).then(r => r.json()),
-        fetch('https://api64.ipify.org?format=json', { signal }).then(r => r.json())
-      ]);
+  if (state.abortController) state.abortController.abort();
+  state.abortController = new AbortController();
+  const { signal } = state.abortController;
 
-      const ipv4 = v4.status === 'fulfilled' ? v4.value.ip : 'Unavailable';
-      const ipv6 = v6.status === 'fulfilled' ? v6.value.ip : 'Not Detected';
-      renderValue('v4', ipv4);
-      renderValue('v6', ipv6);
+  try {
+    const [v4, v6] = await Promise.allSettled([
+      fetch('https://api.ipify.org?format=json', { signal }).then(r => r.json()),
+      fetch('https://api64.ipify.org?format=json', { signal }).then(r => r.json())
+    ]);
 
-      if (ipv4 && ipv4 !== 'Unavailable') {
-        const geoRes = await fetch(`https://ipapi.co/${ipv4}/json/`, { signal });
-        const geoData = await geoRes.json();
-        renderGeo(geoData);
-        updateStatusIndicator(geoData.org);
-      } else {
-        updateStatusIndicator(null);
-      }
-    } catch (err) {
-      if (err.name !== 'AbortError') showToast("Network Error. Try again.");
-    } finally {
-      setLoading(false);
+    const ipv4 = v4.status === 'fulfilled' ? v4.value.ip : 'Unavailable';
+    const ipv6 = v6.status === 'fulfilled' ? v6.value.ip : 'Not Detected';
+    renderValue('v4', ipv4);
+    renderValue('v6', ipv6);
+
+    if (ipv4 && ipv4 !== 'Unavailable') {
+      const geoRes = await fetch(`https://ipapi.co/${ipv4}/json/`, { signal });
+      const geoData = await geoRes.json();
+      renderGeo(geoData);
+      updateStatusIndicator(geoData.org);
+    } else {
+      updateStatusIndicator(null);
     }
+  } catch (err) {
+    if (err.name !== 'AbortError') showToast("Network Error. Try again.");
   }
 
+  // === Stop rotation + start cooldown ===
+  fabIcon.style.animation = "none";            // stop icon rotation
+  dom.fab.style.background = "#888";           // dim gray for cooldown
+  dom.fab.style.transform = "scale(1)";        // restore size
+  dom.fab.style.opacity = "0.6";               // reduce opacity
+  dom.fab.style.boxShadow = "0 4px 12px rgba(136,136,136,0.5)"; // gray shadow
+
+  setTimeout(() => {
+    // Restore original button after 5-second cooldown
+    state.isLoading = false;
+    dom.fab.disabled = false;
+    dom.fab.style.background = "#ff8c00";       // original color
+    dom.fab.style.opacity = "1";
+    dom.fab.style.transform = "scale(1)";
+    dom.fab.style.boxShadow = "0 4px 12px rgba(255,140,0,0.4)"; // original shadow
+  }, 5000);
+    }
   function setLoading(loading) {
     state.isLoading = loading;
     dom.fab.disabled = loading;
