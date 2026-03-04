@@ -10,9 +10,6 @@
   --success: #31a24c;
   --to: #ffedd5;
   --to-text: #b45309;
-  --flag-bg: #f9fafb;
-  --flag-border: #d1d5db;
-  --flag-shadow: rgba(0, 0, 0, 0.2);
   
 }
 
@@ -27,9 +24,6 @@
     --skeleton-base: #3a3b3c;
     --to: #3a2b1a;
     --to-text: #ffb347;
-    --flag-bg: #2b2b2b;
-    --flag-border: #555;
-    --flag-shadow: rgba(255, 255, 255, 0.12);
     
   }
 }
@@ -229,9 +223,9 @@ main {
   object-fit: cover;
   border-radius: 1px;
   background: #fff; /* solid white base fixes dark mode tint */
-  border: 0.5px solid var(--flag-border);
-  box-shadow: 0 1px 3px var(--flag-shadow);
-  transition: all 0.3s ease;
+  border: 1px solid #222; /* dark border always visible */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   filter: none !important;
   mix-blend-mode: normal !important;
   color-scheme: only light;
@@ -239,14 +233,25 @@ main {
   cursor: zoom-in;
 }
 
-/* Hover or touch zoom effect */
+/* Hover / Touch zoom effect */
 .flag-icon:hover,
 .flag-icon:active {
   transform: scale(4);
   z-index: 500;
-  border: 0.5px solid var(--flag-border);
-  box-shadow: 0 0 12px rgba(128, 128, 128, 0.6); /* soft gray glow */
+  border: 1px solid #111; /* darker border when zoomed */
+  box-shadow: 0 0 32px 8px rgba(0, 0, 0, 0.6); /* stronger deep shadow */
   cursor: zoom-out;
-}
-
+  }
+@media (prefers-color-scheme: dark) {
+  .flag-icon {
+    background: #fff;
+    border: 1px solid #444; /* softer dark border */
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+  }
+  .flag-icon:hover,
+  .flag-icon:active {
+    border: 1px solid #333;
+    box-shadow: 0 0 32px 8px rgba(255, 255, 255, 0.25); /* light gray glow for dark mode */
+  }
+  }
 .hidden { display: none !important; }
