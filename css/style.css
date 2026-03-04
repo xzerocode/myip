@@ -229,7 +229,7 @@ main {
   object-fit: cover;
   border-radius: 1px;
   background: #fff; /* solid white base fixes dark mode tint */
-  border: 1px solid var(--flag-border);
+  border: 0.4px solid var(--flag-border);
   box-shadow: 0 1px 3px var(--flag-shadow);
   transition: all 0.3s ease;
 
@@ -244,8 +244,8 @@ main {
 .flag-icon:hover {
   transform: scale(4); /* enlarge 4× */
   z-index: 500;        /* appear above other content */
-  border: 0px solid rgba(255, 140, 0, 0.7);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+  border: 0.4px solid rgba(255, 140, 0, 0.7);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   cursor: zoom-out;
 }
 .flag-icon:hover {
