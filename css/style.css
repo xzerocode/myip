@@ -8,6 +8,7 @@
   --border: #e4e6eb;
   --skeleton-base: #e4e6eb;
   --success: #31a24c;
+  --to: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -199,8 +200,8 @@ main {
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background:#333;
-  color: #ffffff;
+  background:var(--to);
+  color: #000000;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 15px;
