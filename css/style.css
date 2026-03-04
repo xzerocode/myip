@@ -228,10 +228,16 @@ main {
   height: 18px;
   object-fit: cover;
   border-radius: 2px;
-  background: var(--flag-bg);
+  background: #fff; /* solid white base fixes dark mode tint */
   border: 1px solid var(--flag-border);
   box-shadow: 0 1px 3px var(--flag-shadow);
   transition: all 0.3s ease;
+
+  /* Prevent Brave/Chrome from auto-darkening flag images */
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  color-scheme: only light;
+  
 }
 .flag-icon:hover {
   border-color: #ff8c00;
